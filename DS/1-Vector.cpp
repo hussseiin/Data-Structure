@@ -1,12 +1,38 @@
-#include "Vector.h"
+#include <iostream>
+#include <assert.h>
 
-// Vector::Vector(int size) : size(size) {
+using namespace std;
 
-//     if(size < 0)
-//         size = 1;
+class Vector
+{
+public:
+    Vector(int);
+    ~Vector();
 
-//     arr = new int[size] {}; // initialize all the items with 0
-// }
+    void set(int , int);
+    int get(int);
+    int find(int);
+    void print();
+    int get_front();
+    int get_back();
+    void push_back(int);
+    void expand_capacity();
+    void insert(int , int);
+    void right_rotate();
+    void right_rotate(int);
+    void left_rotate();
+    int pop(int);
+    int find_transposition(int);
+
+private:
+
+    int* arr = nullptr;
+
+    int size = 0;
+
+    int capacity;
+
+};
 
 Vector::Vector(int size) : size(size) {
 
@@ -187,4 +213,11 @@ int Vector::find_transposition(int value){
         }
     }
 
+}
+
+int main(){
+
+    
+
+    return 0;
 }

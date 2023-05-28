@@ -1,4 +1,78 @@
-#include "LinkedList.h"
+#include <algorithm>
+#include <iostream>
+#include <assert.h>
+#include <sstream>
+#include <vector>
+using namespace std;
+
+class Node;
+class LinkedList;
+class Head_Based_Linked_List;
+
+class Node
+{
+public:
+    Node(int);
+    ~Node();
+
+    int data;
+
+    Node* next = nullptr;
+
+private: 
+
+};
+
+Node::Node(int data) : data(data) {
+
+}
+
+Node::~Node(){
+    //cout<<"Destroy Value : "<<data<<" at address : "<<this<<"\n";
+}
+
+class LinkedList
+{
+public:
+    LinkedList();
+    ~LinkedList();
+
+    LinkedList(const LinkedList&) = delete;
+    LinkedList& operator=(const LinkedList& another) = delete;
+
+    void print();
+    void insert_end(int);
+    void insert_front(int);
+    Node* get_nth(int);
+    Node* get_nth_back(int);
+    int search(int);
+    int improved_search(int);
+    int improved_search2(int);
+    void debug_verify_data_intergriy();
+    string debug_to_string();
+    void delete_front();
+    void delete_end();
+    void delete_nth(int);
+    void delete_value(int);
+    bool is_same(const LinkedList&);
+    void swap_pairs();
+    void delete_even_positions();
+    void insert_sorted(int);
+    void test1();
+    void debug_add_node(Node*);
+    void debug_remove_node(Node*);
+
+
+private:
+
+    Node* head {}; // to initialize it with "nullptr"
+    
+    Node* tail {};
+
+    int length = 0;
+
+    vector<Node*> debug_data;
+};
 
 LinkedList::LinkedList(){
 
@@ -468,4 +542,70 @@ void LinkedList::debug_remove_node(Node* node){
     else 
         debug_data.erase(it);
 
+}
+
+class Head_Based_Linked_List
+{
+public:
+    Head_Based_Linked_List();
+    ~Head_Based_Linked_List();
+
+    void print();
+
+    void add_element(int);
+
+    Node* get_tail();
+
+private:
+
+    Node* head {};
+};
+
+Head_Based_Linked_List::Head_Based_Linked_List(){
+
+}
+
+Head_Based_Linked_List::~Head_Based_Linked_List(){
+
+}
+
+void Head_Based_Linked_List::add_element(int value){
+
+    Node* item = new Node(value);
+
+    if(!head)
+        head = item;
+
+    else{
+
+        item -> next = head;
+
+        head = item;
+    }
+}
+
+void Head_Based_Linked_List::print(){
+
+    for(Node* cur = head ; cur ; cur = cur->next)
+        cout<<cur->data<<" ";
+
+    cout<<"\n";
+}
+
+Node* Head_Based_Linked_List::get_tail(){
+
+    if(!head)
+        return nullptr;
+
+    Node* cur = head;
+
+    while(cur->next != nullptr)
+        cur = cur->next;
+
+    return cur;
+}
+
+int main(){
+
+    return 0;
 }
